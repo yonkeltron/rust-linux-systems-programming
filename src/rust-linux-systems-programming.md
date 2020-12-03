@@ -165,6 +165,10 @@ Some of my favorites:
 
 ---
 
+# We will first build a Linux process viewer!
+
+---
+
 # <!-- fit --> First thing's first:
 
 # <!-- fit --> Meet `cargo`!
@@ -178,4 +182,127 @@ Some of my favorites:
 # Crates we will use
 
 - [color-eyre](https://crates.io/crates/color-eyre) for pretty error handling
--
+- [procfs](https://crates.io/crates/procfs) - For interfacing with `/proc`
+- [paris](https://crates.io/crates/paris) - For stylish output
+
+---
+
+# Add our dependencies to the `Cargo.toml` file
+
+```toml
+[package]
+name = "process-viewer"
+version = "0.1.0"
+authors = ["Jonathan E. Magen <yonkeltron@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+color-eyre = "0.5.10"
+paris = "1.5.7"
+procfs = "0.9.0"
+```
+
+---
+
+# Add code to our `main.rs`
+
+```rust
+use color_eyre::eyre::Result;
+use paris::Logger;
+
+fn main() -> Result<()> {
+  color_eyre::install()?;
+
+  let mut logger = Logger::new();
+
+  logger.info("Starting up!").newline(1).log("Processes:");
+
+  procfs::process::all_processes()?
+    .into_iter()
+    .map(|process| {
+      format!(
+        "{}: {} - {} bytes",
+        process.pid, process.stat.comm, process.stat.vsize
+      )
+    })
+    .for_each(|process_message| {
+      logger.indent(1).info(process_message);
+    });
+
+  Ok(())
+}
+```
+
+---
+
+# <!-- fit --> Let's break this down!
+
+---
+
+# Preamble and first bits
+
+```rust
+// Imports
+use color_eyre::eyre::Result; // Error handling
+use paris::Logger; // Stylish logging
+
+// The main function is fallible and so returns a Result
+fn main() -> Result<()> {
+  // Install colorized error handlers
+  color_eyre::install()?; // The ? means to "try it"
+```
+
+---
+
+# The `?` operator either returns the contents of the `Result` or short circuits by bubbling up the error to the calling function!
+
+---
+
+# Logging some output
+
+```rust
+  // New up a logger, which is marked as mutable with mut
+  let mut logger = Logger::new();
+  // Emit some friendly output to the terminal
+  logger.info("Starting up!").newline(1).log("Processes:");
+```
+
+---
+
+# The guts of the process viewer
+
+```rust
+ procfs::process::all_processes()? // Grab all processes
+    .into_iter() // Get them in an iterator
+    .map(|process| { // Map processes to strings
+      format!(
+        "{}: {} - {} bytes", // Grab the PID, name, and memory usage
+        process.pid, process.stat.comm, process.stat.vsize
+      )
+    }) // Log each string!
+    .for_each(|process_message| {
+      logger.indent(1).info(process_message);
+    });
+```
+
+---
+
+# Close it out, bring it home
+
+```rust
+  // Signal that it all went well
+  Ok(()) // Note: no semicolon means a return expression
+}
+```
+
+# Walla! We're done!
+
+---
+
+# <!-- fit --> Less than 25 lines, with spaces!
+
+---
+
+# <!-- fit --> It doesn't have to _feel_ low-level to _be_ low-level.
