@@ -1,0 +1,14 @@
+{
+  "name": "rust-linux-systems-programming",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jonathan E. Magen",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@marp-team/marp-cli": "^0.22.1"
+  },
+  "scripts": {
+    "serve": "marp --watch --server src"
+  }
+}
