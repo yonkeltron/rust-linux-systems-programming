@@ -153,6 +153,7 @@ marp: true
 Some of my favorites:
 
 - [libc](https://crates.io/crates/libc) - Foreign-Function Interface (FFI)
+- [nix](https://crates.io/crates/nix) - Friendlier \*nix bindings
 - [procfs](https://crates.io/crates/procfs) - Interface to `/proc`
 - [caps](https://crates.io/crates/caps) - Linux capabilities
 - [redbpf](https://github.com/redsift/redbpf) - Build & run BPF/eBPF modules
@@ -190,18 +191,10 @@ Some of my favorites:
 # Add our dependencies to the `Cargo.toml` file
 
 ```toml
-[package]
-name = "process-viewer"
-version = "0.1.0"
-authors = ["Jonathan E. Magen <yonkeltron@gmail.com>"]
-edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-color-eyre = "0.5.10"
-paris = "1.5.7"
-procfs = "0.9.0"
+color-eyre = "0.5"
+paris = "1.5"
+procfs = "0.9"
 ```
 
 ---
@@ -306,3 +299,121 @@ fn main() -> Result<()> {
 ---
 
 # <!-- fit --> It doesn't have to _feel_ low-level to _be_ low-level.
+
+---
+
+# <!-- fit --> Rust usually feels high-level.
+
+---
+
+# <!-- fit --> Ok. Now what?
+
+---
+
+# Next, let's explore the wide world of [inotify](https://man7.org/linux/man-pages/man7/inotify.7.html)!
+
+![bg left](https://source.unsplash.com/xv7-GlvBLFw)
+
+---
+
+# <!-- fit --> `inotify(7)` is money, but confusing!
+
+---
+
+# The `nix` crate makes it much simpler, though!
+
+---
+
+# Let's write a little inotify program which watches for filesystem changes.
+
+---
+
+```rust
+use color_eyre::eyre::Result;
+use nix::sys::inotify;
+use paris::Logger;
+
+pub fn setup_watcher(path_str: &str) -> Result<bool> {
+  let watcher = inotify::Inotify::init(inotify::InitFlags::empty())?;
+  let watch = watcher.add_watch(path_str, inotify::AddWatchFlags::IN_ALL_EVENTS)?;
+
+  let mut logger = Logger::new();
+  let mut go = true;
+
+  while go {
+    logger.newline(1).loading("Waiting for events...");
+    let events = watcher.read_events()?;
+    logger.info(format!("Got {} events", events.len()));
+
+    for event in events {
+      let msg = format!("Event: {:?} for {:?}", event.mask, event.name);
+      logger.indent(1).log(msg);
+    }
+  }
+
+  watcher.rm_watch(watch)?;
+
+  Ok(go)
+}
+```
+
+---
+
+# <!-- fit --> Again, we'll break this down!
+
+---
+
+```rust
+// Create our function which takes a path as a string slice
+pub fn setup_watcher(path_str: &str) -> Result<bool> {
+  // Initialize our watcher
+  let watcher = inotify::Inotify::init(inotify::InitFlags::empty())?;
+  // Create the watch!
+  let watch = watcher.add_watch(path_str, inotify::AddWatchFlags::IN_ALL_EVENTS)?;
+
+```
+
+---
+
+```rust
+  // New up a logger
+  let mut logger = Logger::new();
+  // Set a stop variable
+  let mut go = true;
+
+  // Loop until not go
+  while go {
+    logger.newline(1).loading("Waiting for events...");
+    // Read events from the queue, otherwise block!
+    let events = watcher.read_events()?;
+    logger.info(format!("Got {} events", events.len()));
+```
+
+---
+
+```rust
+    // Loop over events
+    for event in events {
+      // Make a nice message
+      let msg = format!("Event: {:?} for {:?}", event.mask, event.name);
+      // Print it out
+      logger.indent(1).log(msg);
+    }
+  }
+
+  // Clean up our watch just in case
+  watcher.rm_watch(watch)?;
+
+  // All done!
+  Ok(go)
+}
+```
+
+---
+
+# Problems with this inotify example
+
+1. The `go` variable will always be `true`.
+1. It is an overly-broad watch (`IN_ALL_EVENTS`)!
+
+Try to ignore these. Work with me, here.
