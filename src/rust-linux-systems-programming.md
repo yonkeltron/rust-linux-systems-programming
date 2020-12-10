@@ -488,3 +488,10 @@ Try to ignore these. Work with me, here.
 - One of the best software engineers I know
 - Co-maintainer of Hermione
 - A real swell fella
+
+---
+
+# <!-- fit --> Demo!
+
+![bg](darkblue)
+![](white)
