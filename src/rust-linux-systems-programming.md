@@ -417,3 +417,74 @@ pub fn setup_watcher(path_str: &str) -> Result<bool> {
 1. It is an overly-broad watch (`IN_ALL_EVENTS`)!
 
 Try to ignore these. Work with me, here.
+
+---
+
+# <!-- fit --> Ok. So.
+
+---
+
+# <!-- fit --> Systems Programming!
+
+---
+
+# <!-- fit --> It doesn't have to be painful!
+
+---
+
+# Recap: systems programming with Rust
+
+- Doesn't have to feel low-level to be low-level.
+- Excellent ecosystem of crates.
+- Versatile interfaces to existing libraries.
+
+![bg left](https://source.unsplash.com/P2ZokcpVrik)
+
+---
+
+# Stuff we didn't cover
+
+- Command-line interfaces
+  - The [clap](https://crates.io/crates/clap) crate is exceptional
+- Notifications
+  - Check out the [notify_rust](https://crates.io/crates/notify_rust) crate for great functionality
+- Async programming
+  - I am a big fan of [async-std](https://crates.io/crates/async-std)
+
+---
+
+# <!-- fit --> Enter: Hermione
+
+![bg right](https://source.unsplash.com/IV6GyJkiHfg)
+
+---
+
+# Competent magic for your config files and more!
+
+## A package manager for your config files?
+
+---
+
+# Hermione features
+
+- Full Rust CLI
+- Integrated package scaffolding and utilities
+- Repository support
+- Package hooks
+
+![bg left](https://source.unsplash.com/AJ_Mou1FUS8)
+
+---
+
+# <!-- fit --> Check us out at `https://hermione.dev`
+
+![bg blur](https://source.unsplash.com/0V7_N62zZcU)
+![](white)
+
+---
+
+# I want to introduce Egli Hila
+
+- One of the best software engineers I know
+- Co-maintainer of Hermione
+- A real swell fella
