@@ -38,8 +38,8 @@ marp: true
 
 - Intro to Rust
 - Linux systems programming
-- Examine a real application
-- Q&A
+- Examine a real application: Hermione
+- Q&A with co-maintainers
 
 ![bg left](https://source.unsplash.com/boE2xft0cAo)
 
