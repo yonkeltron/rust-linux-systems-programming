@@ -199,15 +199,13 @@ procfs = "0.9"
 
 ---
 
-# Add code to our `main.rs`
+# Add code to our project
 
 ```rust
 use color_eyre::eyre::Result;
 use paris::Logger;
 
-fn main() -> Result<()> {
-  color_eyre::install()?;
-
+pub fn view_procs() -> Result<()> {
   let mut logger = Logger::new();
 
   logger.info("Starting up!").newline(1).log("Processes:");
@@ -241,15 +239,9 @@ fn main() -> Result<()> {
 use color_eyre::eyre::Result; // Error handling
 use paris::Logger; // Stylish logging
 
-// The main function is fallible and so returns a Result
-fn main() -> Result<()> {
-  // Install colorized error handlers
-  color_eyre::install()?; // The ? means to "try it"
+// The primary function is fallible and so returns a Result
+pub fn view_procs() -> Result<()> {
 ```
-
----
-
-# The `?` operator either returns the contents of the `Result` or short circuits by bubbling up the error to the calling function!
 
 ---
 
@@ -264,12 +256,16 @@ fn main() -> Result<()> {
 
 ---
 
+# The `?` operator either returns the contents of the `Result` or short circuits by bubbling up the error to the calling function!
+
+---
+
 # The guts of the process viewer
 
 ```rust
  procfs::process::all_processes()? // Grab all processes
     .into_iter() // Get them in an iterator
-    .map(|process| { // Map processes to strings
+    .map(|process| { // Map processes to Strings
       format!(
         "{}: {} - {} bytes", // Grab the PID, name, and memory usage
         process.pid, process.stat.comm, process.stat.vsize
@@ -310,7 +306,7 @@ fn main() -> Result<()> {
 
 ---
 
-# Next, let's explore the wide world of [inotify](https://man7.org/linux/man-pages/man7/inotify.7.html)!
+# Next, let's explore the wide world of filesystem event notifications provided by [inotify](https://man7.org/linux/man-pages/man7/inotify.7.html)!
 
 ![bg left](https://source.unsplash.com/xv7-GlvBLFw)
 
@@ -415,6 +411,7 @@ pub fn setup_watcher(path_str: &str) -> Result<bool> {
 
 1. The `go` variable will always be `true`.
 1. It is an overly-broad watch (`IN_ALL_EVENTS`)!
+1. It doesn't traverse the directory tree.
 
 Try to ignore these. Work with me, here.
 
@@ -468,6 +465,7 @@ Try to ignore these. Work with me, here.
 # Hermione features
 
 - Full Rust CLI
+  - Portable across Linux, macOS, and Windows
 - Integrated package scaffolding and utilities
 - Repository support
 - Package hooks
