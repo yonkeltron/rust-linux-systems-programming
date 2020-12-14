@@ -17,7 +17,7 @@ marp: true
 - Principal Computer Scientist
 - 6 years at current company (healthcare)
 - 5 years in startups before that
-- Linux user since early middle school
+- Linux user since the early days
 
 ![bg right](https://source.unsplash.com/EwKXn5CapA4)
 
@@ -36,12 +36,78 @@ marp: true
 
 # Agendanomics
 
+- Some definitions and history
 - Intro to Rust
 - Linux systems programming
 - Examine a real application: Hermione
 - Q&A with co-maintainers
 
 ![bg left](https://source.unsplash.com/boE2xft0cAo)
+
+---
+
+# <!-- fit --> What is Systems Programming?
+
+---
+
+# Systems Programming
+
+Broadly: Non-app programming like
+
+- OS development
+  - Kernels
+  - Drivers
+- System software
+  - Daemons
+  - Infrastructure components
+- Frameworks and libraries
+  - Game engines
+
+![bg right](https://source.unsplash.com/zqIOvV-D3JQ)
+
+---
+
+# <!-- fit --> This term is a bit silly.
+
+---
+
+# <!-- fit --> Whatever.
+
+---
+
+# Traditionally, systems programming has been the domain of C and C++.
+
+---
+
+# <!-- fit --> Mistakes were done.
+
+---
+
+# Enter the challengers
+
+- D
+- Google's Go
+- Zig
+- Nim
+- Rust
+
+![bg left](https://source.unsplash.com/abkEAOjnY0s)
+
+---
+
+# <!-- fit --> We're obviously here for Rust, though.
+
+---
+
+# Some active Rust OS dev projects
+
+- [Redox](https://www.redox-os.org/) is a Unix-like microkernel OS
+- [Tock](https://www.tockos.org/) for IoT
+- [Firecracker](https://firecracker-microvm.github.io/) is an AWS-sponsored project for VM, container, and function-based services
+
+---
+
+# <!-- fit --> What about :penguin:?
 
 ---
 
@@ -79,15 +145,30 @@ marp: true
 
 ---
 
-# Safety
+# Safety baked into types
 
-- Affine types
-  - From [affine logic](https://en.wikipedia.org/wiki/Affine_logic), a substructural logic
-  - Values may be used at most once
-- Borrow checker
-  - Makes sure your code doesn't use values it shouldn't
-  - Higher learning curve
-  - Added to D, being added to Swift
+Affine types
+
+- From [affine logic](https://en.wikipedia.org/wiki/Affine_logic), a substructural logic
+- Values may be used at most once
+
+If this sounds weird, it's because it is. Weirdly wonderful.
+
+---
+
+# Safety enforced by the compiler
+
+Borrow checker
+
+- Makes sure your code doesn't use values it shouldn't
+- Higher learning curve
+
+Added to D, being [added to Swift](https://github.com/apple/swift/blob/main/docs/OwnershipManifesto.md).
+
+---
+
+# Evern more of Rust's safety mechanisms
+
 - Compile-time memory management with lifetimes
   - Compiler does the hard work for you
   - Fine-grained control, without `malloc` and `free` details.
@@ -119,7 +200,7 @@ marp: true
 - Speed, relative to C: ~90%
   - Common Lisp: ~80%
   - Go: ~70%
-- Concurrency and parallelism programming
+- Concurrency and parallelism
   - Threads (stdlib)
   - Futures (`async` and `await`)
   - Actors ([Riker](https://riker.rs/), [spaad](https://lib.rs/crates/spaad), others...)
@@ -156,7 +237,6 @@ Some of my favorites:
 - [nix](https://crates.io/crates/nix) - Friendlier \*nix bindings
 - [procfs](https://crates.io/crates/procfs) - Interface to `/proc`
 - [caps](https://crates.io/crates/caps) - Linux capabilities
-- [redbpf](https://github.com/redsift/redbpf) - Build & run BPF/eBPF modules
 
 ![bg right](https://source.unsplash.com/8dvTZPVEJWk)
 
@@ -447,6 +527,8 @@ Try to ignore these. Work with me, here.
   - Check out the [notify_rust](https://crates.io/crates/notify_rust) crate for great functionality
 - Async programming
   - I am a big fan of [async-std](https://crates.io/crates/async-std)
+- Linux kernel integration with [BPF/ePBF](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter)
+  - [redbpf](https://github.com/redsift/redbpf) - Tool suite to build and run modules in Rust
 
 ---
 
@@ -493,3 +575,10 @@ Try to ignore these. Work with me, here.
 
 ![bg](darkblue)
 ![](white)
+
+---
+
+# Learning more about Rust
+
+- Discover Rust crates at [Lib.rs](https://lib.rs/) and [crates.io](https://crates.io/)
+- Learn more about Hermione at https://hermione.dev
