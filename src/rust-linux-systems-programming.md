@@ -529,6 +529,8 @@ Try to ignore these. Work with me, here.
   - I am a big fan of [async-std](https://crates.io/crates/async-std)
 - Linux kernel integration with [BPF/ePBF](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter)
   - [redbpf](https://github.com/redsift/redbpf) - Tool suite to build and run modules in Rust
+- Filesystem development
+  - [fuse-rs](https://github.com/zargony/fuse-rs) for writing your own [FUSE](https://github.com/libfuse/libfuse/) systems
 
 ---
 
@@ -581,4 +583,8 @@ Try to ignore these. Work with me, here.
 # Learning more about Rust
 
 - Discover Rust crates at [Lib.rs](https://lib.rs/) and [crates.io](https://crates.io/)
-- Learn more about Hermione at https://hermione.dev
+
+# Learning more abot Hermione
+
+- Official website https://hermione.dev
+- GitHub Repository https://github.com/yonkeltron/hermione
