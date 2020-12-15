@@ -102,7 +102,7 @@ Broadly: Non-app programming like
 # Some active Rust OS dev projects
 
 - [Redox](https://www.redox-os.org/) is a Unix-like microkernel OS
-- [Tock](https://www.tockos.org/) for IoT
+- [Tock](https://www.tockos.org/) is an OS for IoT
 - [Firecracker](https://firecracker-microvm.github.io/) is an AWS-sponsored project for VM, container, and function-based services
 
 ---
@@ -176,18 +176,42 @@ Added to D, being [added to Swift](https://github.com/apple/swift/blob/main/docs
 
 ---
 
-# Ergonomics
+# Ecosystem ergonomics
 
 - Best compiler I've ever worked with
   - Fantastic error messages
   - A bit slow, though
-- Incredible attention to programmer productivity
-  - Pattern matching
-  - Expressions
-  - Macros
+- Great tooling
+  - Linting with [clippy](https://github.com/rust-lang/rust-clippy)
+  - [RLS](https://github.com/rust-lang/rls) and [Rust Analyzer](https://github.com/rust-analyzer/rust-analyzer) for editor integration
+  - Formatting with [`rustfmt`](https://github.com/rust-lang/rustfmt)
+
+---
+
+# Rust-the-language cares about users
+
+Incredible linguistic attention to programmer productivity:
+
+- Functional programming constructs come standard
+- Pattern matching
+- Expressions
+- Macros
 - Objects but no inheritance
-  - Traits
-- Compiler-checked errors with `Result<T, E>`
+  - Traits!
+
+---
+
+# Less terrible error handling
+
+## Compiler-checked errors with `Result<T, E>` to mark fallible computation
+
+- No exceptions
+- Single return values
+- Error propagation made simpler
+  - [`std::ops::Try`](https://doc.rust-lang.org/stable/std/ops/trait.Try.html)
+  - The [`?`](https://doc.rust-lang.org/edition-guide/rust-2018/error-handling-and-panics/the-question-mark-operator-for-easier-error-handling.html) operator
+
+![bg left](https://source.unsplash.com/52jRtc2S_VE)
 
 ---
 
@@ -199,11 +223,19 @@ Added to D, being [added to Swift](https://github.com/apple/swift/blob/main/docs
   - Slow because it does a LOT!
 - Speed, relative to C: ~90%
   - Common Lisp: ~80%
-  - Go: ~70%
-- Concurrency and parallelism
-  - Threads (stdlib)
-  - Futures (`async` and `await`)
-  - Actors ([Riker](https://riker.rs/), [spaad](https://lib.rs/crates/spaad), others...)
+  - Go: ~60-70%
+
+![bg right](https://source.unsplash.com/7pSpz7hXox0)
+
+---
+
+# Concurrency and parallelism
+
+- Threads (stdlib)
+- Futures (`async` and `await`)
+- Actors ([Riker](https://riker.rs/), [spaad](https://lib.rs/crates/spaad), others...)
+
+![bg left](https://source.unsplash.com/PpHZmnAqHA4)
 
 ---
 
@@ -336,7 +368,9 @@ pub fn view_procs() -> Result<()> {
 
 ---
 
-# The `?` operator either returns the contents of the `Result` or short circuits by bubbling up the error to the calling function!
+# Remember:
+
+## The `?` operator either returns the contents of the `Result` or short circuits by bubbling up the error to the calling function!
 
 ---
 
@@ -519,7 +553,7 @@ Try to ignore these. Work with me, here.
 
 ---
 
-# Stuff we didn't cover
+# Stuff we didn't even cover
 
 - Command-line interfaces
   - The [clap](https://crates.io/crates/clap) crate is exceptional
@@ -531,6 +565,20 @@ Try to ignore these. Work with me, here.
   - [redbpf](https://github.com/redsift/redbpf) - Tool suite to build and run modules in Rust
 - Filesystem development
   - [fuse-rs](https://github.com/zargony/fuse-rs) for writing your own [FUSE](https://github.com/libfuse/libfuse/) systems
+
+---
+
+# But Jonathan!
+
+# Have you ever written non-trivial things in Rust?
+
+---
+
+# <!-- fit --> Yes. Lots.
+
+---
+
+# Jonathan is the maintainer of several crates, including the [`testanything`](https://crates.io/crates/testanything) library for emitting test results in the [Test Anything Protocol (TAP)](http://testanything.org/).
 
 ---
 
@@ -565,11 +613,18 @@ Try to ignore these. Work with me, here.
 
 ---
 
-# I want to introduce Egli Hila
+# <!-- fit --> Highly experimental!
+
+---
+
+# I want to introduce co-maintainer Egli Hila
 
 - One of the best software engineers I know
 - Co-maintainer of Hermione
 - A real swell fella
+- Fantastic baker
+
+![bg right](https://source.unsplash.com/IUk1S6n2s0o)
 
 ---
 
@@ -587,4 +642,4 @@ Try to ignore these. Work with me, here.
 # Learning more abot Hermione
 
 - Official website https://hermione.dev
-- GitHub Repository https://github.com/yonkeltron/hermione
+- Track development at https://github.com/yonkeltron/hermione
