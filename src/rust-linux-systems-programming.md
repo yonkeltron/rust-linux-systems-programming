@@ -4,7 +4,7 @@ marp: true
 
 # Linux systems programming with Rust
 
-## Jonathan E. Magen
+## Jonathan E. Magen / @yonkeltron
 
 ### PLUG: Philly Linux User Group
 
@@ -643,3 +643,7 @@ Try to ignore these. Work with me, here.
 
 - Official website https://hermione.dev
 - Track development at https://github.com/yonkeltron/hermione
+
+---
+
+# <!-- fit --> Thanks. End.
