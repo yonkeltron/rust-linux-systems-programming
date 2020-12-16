@@ -563,6 +563,7 @@ Try to ignore these. Work with me, here.
   - I am a big fan of [async-std](https://crates.io/crates/async-std)
 - Linux kernel integration with [BPF/ePBF](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter)
   - [redbpf](https://github.com/redsift/redbpf) - Tool suite to build and run modules in Rust
+  - Rust [BPF compiler target](https://confused.ai/posts/rust-bpf-target)
 - Filesystem development
   - [fuse-rs](https://github.com/zargony/fuse-rs) for writing your own [FUSE](https://github.com/libfuse/libfuse/) systems
 
