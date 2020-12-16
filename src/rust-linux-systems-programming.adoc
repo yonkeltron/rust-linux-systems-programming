@@ -1,6 +1,7 @@
 = Linux systems programming with Rust
 :source-highlighter: rouge
 :rouge-style: thankful_eyes
+:icons: font
 
 == Jonathan E. Magen / @yonkeltron
 
@@ -80,6 +81,7 @@ NOTE: We normally think of systems programming languages as natively compiled on
 * Google’s Go
 * Zig
 * Nim
+* Crystal
 * Rust
 
 ==  We’re obviously here for Rust, though.
@@ -252,6 +254,11 @@ Some of my favorites:
 
 
 ==  Let’s look at some code!
+
+.Goals
+* Maintain realism by using actual libraries.
+* Show how to use Linux-specific functionality where possible.
+* Explain examples with context.
 
 
 
@@ -462,7 +469,7 @@ pub fn setup_watcher(path_str: &str) -> Result<bool> {
   let watch = watcher.add_watch(path_str, inotify::AddWatchFlags::IN_ALL_EVENTS)?;
 ----
 
-
+== Setup for main loop
 
 [source,rust]
 ----
@@ -479,7 +486,7 @@ pub fn setup_watcher(path_str: &str) -> Result<bool> {
     logger.info(format!("Got {} events", events.len()));
 ----
 
-
+== Handling detected events
 
 [source,rust]
 ----
@@ -539,6 +546,8 @@ NOTE: Try to ignore these. Work with me, here.
 for great functionality
 * Async programming
 ** I am a big fan of https://crates.io/crates/async-std[async-std]
+* Fault tolerance
+** The https://bastion.rs/[Bastion] project looks really cool
 * Linux kernel integration with
 https://en.wikipedia.org/wiki/Berkeley_Packet_Filter[BPF/ePBF]
 ** https://github.com/redsift/redbpf[redbpf] - Tool suite to build and
