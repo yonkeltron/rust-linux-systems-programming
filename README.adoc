@@ -2,9 +2,14 @@
 Jonathan E. Magen / @yonkeltron
 PLUG: Philly Linux User Group
 
-== Viewing and materials
+== Viewing Content and materials
 
 .Requirements
-* Node.js
-* Yarn
+* Ruby
 * Rust via https://rustup.rs/[`rustup`]
+
+== Rendering slides
+
+. Clone this repository and `cd` into it.
+. Execute `bundle install` to install needed Ruby dependencies.
+. Run `bundle exec rake` to generate the slides which will be available in the `src` directory as an HTML file.

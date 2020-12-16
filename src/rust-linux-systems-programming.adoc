@@ -504,12 +504,11 @@ pub fn setup_watcher(path_str: &str) -> Result<bool> {
 
 == Problems with this inotify example
 
-[arabic]
 . The `go` variable will always be `true`.
 . It is an overly-broad watch (`IN_ALL_EVENTS`)!
 . It doesn’t traverse the directory tree.
 
-Try to ignore these. Work with me, here.
+NOTE: Try to ignore these. Work with me, here.
 
 
 
