@@ -1,5 +1,8 @@
 ---
 marp: true
+paginate: true
+header: "Linux + Rust"
+footer: "Jonathan E. Magen"
 ---
 
 # Linux systems programming with Rust
@@ -68,6 +71,12 @@ Broadly: Non-app programming like
 ---
 
 # <!-- fit --> This term is a bit silly.
+
+---
+
+# Why is this definition silly?
+
+At face value you could do "Systems Programming" with
 
 ---
 

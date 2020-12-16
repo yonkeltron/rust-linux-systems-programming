@@ -1,0 +1,10 @@
+= Linux systems programming with Rust
+Jonathan E. Magen / @yonkeltron
+PLUG: Philly Linux User Group
+
+== Viewing and materials
+
+.Requirements
+* Node.js
+* Yarn
+* Rust via https://rustup.rs/[`rustup`]
