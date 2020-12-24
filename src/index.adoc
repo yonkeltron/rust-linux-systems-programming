@@ -1,4 +1,5 @@
 = Linux systems programming with Rust
+Jonathan E. Magen - @yonkeltron
 :source-highlighter: rouge
 :rouge-style: thankful_eyes
 :icons: font
@@ -7,13 +8,21 @@
 
 === PLUG: Philly Linux User Group
 
+== What is this?
 
-== Who is this guy?
+A talk presented to the http://www.phillylinux.org/[Philly Linux User Group (PLUG)] on January 6th, 2021.
+The topic is "Linux Systems Programming with Rust" and focuses on Linux-specific programming with the https://www.rust-lang.org/[Rust Programming Language].
+This talk will feature exactly zero slides and will be made entirely available, complete with working example code, online.
+
+== Who is this Jonathan guy?
 
 * Principal Computer Scientist
 * 6 years at current company (healthcare)
 * 5 years in startups before that
 * Linux user since the early days
+** Early days means
+*** Prior to RedHat Linux 9!
+*** Started when Linux Live CDs were *very* new
 
 
 ==  Why are we here?
@@ -29,7 +38,8 @@
 * Intro to Rust
 * Linux systems programming
 * Examine a real application: Hermione
-* Q&A with co-maintainers
+** Q&A with co-maintainers
+* Future work
 
 ==  What is Systems Programming?
 
@@ -56,11 +66,11 @@ Broadly: Non-app programming like
 
 At face value you could do "Systems Programming" with:
 
-* Elixir
-* TypeScript on Node.js
-* Python
+* https://elixir-lang.org/[Elixir/OTP]
+* https://www.typescriptlang.org/[TypeScript] on https://nodejs.org/en/[Node.js] or https://elixir-lang.org/[Deno]
+* Python or Ruby
 
-NOTE: We normally think of systems programming languages as natively compiled ones.
+NOTE: We typically think of systems programming languages as natively compiled ones.
 
 ==  Whatever.
 
@@ -68,6 +78,12 @@ NOTE: We normally think of systems programming languages as natively compiled on
 
 == Traditionally, systems programming has been the domain of C and C++.
 
+* Especially in the Unix world
+** https://www.gnome.org/[GNOME] desktop software written with https://gtk.org/[GTK] in C
+** https://kde.org/[KDE] desktop environment written with https://www.qt.io/[Qt] in C++
+* Certainly on Linux
+** Linux kernel written (mostly) in C
+** Both https://www.gnu.org/software/libc/[`glibc`] and https://www.gnu.org/software/coreutils/[GNU Coreutils] written in C
 
 
 ==  Mistakes were done.
@@ -77,11 +93,12 @@ NOTE: We normally think of systems programming languages as natively compiled on
 
 == Enter the challengers
 
-* D
-* Google’s Go
-* Zig
-* Nim
-* Crystal
+* https://golang.org/[Google's Go]
+* https://crystal-lang.org/[Crystal]
+* https://dlang.org/[D]
+* https://scala-native.readthedocs.io/[Scala Native]
+* https://nim-lang.org/[Nim]
+* https://ziglang.org/[Zig]
 * Rust
 
 ==  We’re obviously here for Rust, though.
@@ -118,8 +135,8 @@ AWS-sponsored project for VM, container, and function-based services
 
 == No, seriously. Rust is fantastic!
 
-* Originally developed at Mozilla
-* Used by many, including AWS
+* Originally developed at https://www.mozilla.org/en-US/[Mozilla]
+* Used by many, including https://aws.amazon.com/[AWS]
 * Designed with some very novel features
 
 == Novel features of Rust
@@ -136,7 +153,7 @@ Affine types
 substructural logic
 * Values may be used at most once
 
-If this sounds weird, it’s because it is. Weirdly wonderful.
+NOTE: If this sounds weird, it’s because it is. Weirdly wonderful.
 
 
 
@@ -158,7 +175,7 @@ to Swift].
 * Compile-time memory management with lifetimes
 ** Compiler does the hard work for you
 ** Fine-grained control, without `malloc` and `free` details.
-* No `null` or equivalent, `Option<T>` instead
+* No `null` or equivalent, https://doc.rust-lang.org/std/option/index.html[`Option<T>`] instead
 
 
 
@@ -184,16 +201,17 @@ Incredible linguistic attention to programmer productivity:
 * Pattern matching
 * Expressions
 * Macros
-* Objects but no inheritance
+* Objects (structs) but no inheritance
 ** Traits!
 
-
+NOTE: Traits are a bit different from Scala's implementation.
+This remains mostly due to their deliberate simplicity and an equally deliberate omission of https://en.wikipedia.org/wiki/Kind_(type_theory)[Higher-Kinded Types (HKTs)].
 
 == Less terrible error handling
 
 === Compiler-checked errors with `Result<T, E>` to mark fallible computation
 
-* No exceptions
+* No exceptions!
 * Single return values
 * Error propagation made simpler
 ** https://doc.rust-lang.org/stable/std/ops/trait.Try.html[`std::ops::Try`]
@@ -211,16 +229,16 @@ operator
 * Optimizing compiler
 ** Slow because it does a LOT!
 * Speed, relative to C: ~90%
-** Common Lisp: ~80%
+** https://common-lisp.net/[Common Lisp]: ~80%
 ** Go: ~60-70%
 
 
 
 == Concurrency and parallelism
 
-* Threads (stdlib)
-* Futures (`async` and `await`)
-* Actors (https://riker.rs/[Riker], https://lib.rs/crates/spaad[spaad],
+* Threads (included in the https://doc.rust-lang.org/std/thread/index.html[`std::thread`] module)
+* Futures (`async` and `await` with the https://doc.rust-lang.org/std/future/trait.Future.html[`Future`] trait)
+* Actors (https://riker.rs/[Riker], https://lib.rs/crates/spaad[spaad], https://github.com/sunli829/xactor[Xactor],
 others…)
 
 
@@ -252,6 +270,7 @@ Some of my favorites:
 * https://crates.io/crates/procfs[procfs] - Interface to `/proc`
 * https://crates.io/crates/caps[caps] - Linux capabilities
 
+== This talk will become more about Linux-specific programming
 
 ==  Let’s look at some code!
 
@@ -261,16 +280,15 @@ Some of my favorites:
 * Explain examples with context.
 
 
-
 == We will first build a Linux process viewer!
 
 
 
 ==  First thing’s first:
 
-==  Meet `cargo`!
+===  Meet https://doc.rust-lang.org/cargo/[`cargo`]!
 
-==  (Cargo is Rust’s build tool.)
+====  (Cargo is Rust’s build tool.)
 
 
 == Crates we will use
