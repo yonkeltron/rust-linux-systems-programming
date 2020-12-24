@@ -12,4 +12,4 @@ PLUG: Philly Linux User Group
 
 . Clone this repository and `cd` into it.
 . Execute `bundle install` to install needed Ruby dependencies.
-. Run `bundle exec rake` to generate the slides which will be available in the `src` directory as an HTML file.
+. Run `bundle exec rake` to generate the document which will be available in the `public` directory as an HTML file.
