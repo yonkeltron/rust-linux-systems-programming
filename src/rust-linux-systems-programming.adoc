@@ -537,6 +537,12 @@ NOTE: Try to ignore these. Work with me, here.
 * Excellent ecosystem of crates.
 * Versatile interfaces to existing libraries.
 
+== Packaging Rust binaries for Linux
+
+* Make a Debian package with https://crates.io/crates/cargo-deb[`cargo-deb`].
+* Make an RPM with https://crates.io/crates/cargo-rpm[`cargo-rpm`].
+* Easy to bake into an https://appimage.org/[AppImage]!
+
 == Stuff we didn’t even cover
 
 * Command-line interfaces
