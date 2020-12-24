@@ -314,16 +314,19 @@ procfs = "0.9"
 
 == Add code to our project
 
-[source,rust,line-numbers]
+[source,rust,linenums]
 ----
+// <1>
 use color_eyre::eyre::Result;
 use paris::Logger;
 
+// <2>
 pub fn view_procs() -> Result<()> {
   let mut logger = Logger::new();
 
   logger.info("Starting up!").newline(1).log("Processes:");
 
+  // <3>
   procfs::process::all_processes()?
     .into_iter()
     .map(|process| {
@@ -339,7 +342,9 @@ pub fn view_procs() -> Result<()> {
   Ok(())
 }
 ----
-
+<1> Preamble
+<2> Function definition
+<3> Main meat of the program
 
 
 ==  Let’s break this down!
@@ -350,26 +355,29 @@ pub fn view_procs() -> Result<()> {
 
 [source,rust]
 ----
-// Imports
-use color_eyre::eyre::Result; // Error handling
-use paris::Logger; // Stylish logging
+// <1>
+use color_eyre::eyre::Result; // <2>
+use paris::Logger; // <3>
 
-// The primary function is fallible and so returns a Result
+// <4>
 pub fn view_procs() -> Result<()> {
 ----
-
-
+<1> Imports
+<2> Colored error handling
+<3> Stylish logging output on the console
+<4> The primary function is fallible and so returns a `Result`
 
 == Logging some output
 
 [source,rust]
 ----
-  // New up a logger, which is marked as mutable with mut
+  // <1>
   let mut logger = Logger::new();
-  // Emit some friendly output to the terminal
+  // <2>
   logger.info("Starting up!").newline(1).log("Processes:");
 ----
-
+<1> New up a logger, which is marked as mutable with `mut`
+<2> Emit some friendly output to the terminal
 
 
 == Remember:
@@ -382,29 +390,36 @@ pub fn view_procs() -> Result<()> {
 
 [source,rust]
 ----
- procfs::process::all_processes()? // Grab all processes
-    .into_iter() // Get them in an iterator
-    .map(|process| { // Map processes to Strings
+ procfs::process::all_processes()? // <1>
+    .into_iter() // <2>
+    .map(|process| { // <3>
       format!(
-        "{}: {} - {} bytes", // Grab the PID, name, and memory usage
+        "{}: {} - {} bytes", // <4>
         process.pid, process.stat.comm, process.stat.vsize
       )
-    }) // Log each string!
+    }) // <5>
     .for_each(|process_message| {
       logger.indent(1).info(process_message);
     });
 ----
-
+<1> Query all processes from `/proc`
+<2> Get them in an iterator
+<3> Map processes to `String`s
+<4> Grab the PID, name, and memory usage
+<5> Log each string!
 
 
 == Close it out, bring it home
 
 [source,rust]
 ----
-  // Signal that it all went well
-  Ok(()) // Note: no semicolon means a return expression
+  // <1>
+  Ok(()) // <2>
 }
 ----
+<1> Signal that it all went well by returning an empty `Ok`
+<2> Note: no semicolon means a return expression
+
 
 == Walla! We’re done!
 
@@ -441,19 +456,23 @@ pub fn view_procs() -> Result<()> {
 
 
 
-[source,rust,line-numbers]
+[source,rust,linenums]
 ----
+// <1>
 use color_eyre::eyre::Result;
 use nix::sys::inotify;
 use paris::Logger;
 
+// <2>
 pub fn setup_watcher(path_str: &str) -> Result<bool> {
+  // <3>
   let watcher = inotify::Inotify::init(inotify::InitFlags::empty())?;
   let watch = watcher.add_watch(path_str, inotify::AddWatchFlags::IN_ALL_EVENTS)?;
 
   let mut logger = Logger::new();
   let mut go = true;
 
+  // <4>
   while go {
     logger.newline(1).loading("Waiting for events...");
     let events = watcher.read_events()?;
@@ -464,14 +483,17 @@ pub fn setup_watcher(path_str: &str) -> Result<bool> {
       logger.indent(1).log(msg);
     }
   }
-
+  // <5>
   watcher.rm_watch(watch)?;
 
   Ok(go)
 }
 ----
-
-
+<1> Preamble
+<2> Function definition
+<3> Setup
+<4> Main logic
+<5> Clean up
 
 ==  Again, we’ll break this down!
 
@@ -479,52 +501,61 @@ pub fn setup_watcher(path_str: &str) -> Result<bool> {
 
 [source,rust]
 ----
-// Create our function which takes a path as a string slice
+// <1>
 pub fn setup_watcher(path_str: &str) -> Result<bool> {
-  // Initialize our watcher
+  // <2>
   let watcher = inotify::Inotify::init(inotify::InitFlags::empty())?;
-  // Create the watch!
+  // <3>
   let watch = watcher.add_watch(path_str, inotify::AddWatchFlags::IN_ALL_EVENTS)?;
 ----
+<1> Create our function which takes a path as a string slice
+<2> Initialize our watcher
+<3> Create the watch!
 
 == Setup for main loop
 
 [source,rust]
 ----
-  // New up a logger
+  // <1>
   let mut logger = Logger::new();
-  // Set a stop variable
   let mut go = true;
 
-  // Loop until not go
+  // <2>
   while go {
     logger.newline(1).loading("Waiting for events...");
-    // Read events from the queue, otherwise block!
+    // <3>
     let events = watcher.read_events()?;
     logger.info(format!("Got {} events", events.len()));
 ----
+<1> New up a logger and a stop variable
+<2> Loop until not go
+<3> Read events from the queue, otherwise block!
 
 == Handling detected events
 
 [source,rust]
 ----
-    // Loop over events
+    // <1>
     for event in events {
-      // Make a nice message
+      // <2>
       let msg = format!("Event: {:?} for {:?}", event.mask, event.name);
-      // Print it out
+      // <3>
       logger.indent(1).log(msg);
     }
   }
 
-  // Clean up our watch just in case
+  // <4>
   watcher.rm_watch(watch)?;
 
-  // All done!
+  // <5>
   Ok(go)
 }
 ----
-
+<1> Loop over events
+<2> Make a nice message
+<3> Print it out
+<4> Clean up our watch just in case
+<5> All done!
 
 
 == Problems with this inotify example
