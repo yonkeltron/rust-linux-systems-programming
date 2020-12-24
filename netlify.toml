@@ -1,0 +1,5 @@
+[build]
+publish = "public/"
+
+# Default build command.
+command = "bundle install && bundle exec rake"
