@@ -643,7 +643,7 @@ https://github.com/libfuse/libfuse/[FUSE] systems
 ** Portable across Linux, macOS, and Windows
 * Integrated package scaffolding and utilities
 * Repository support
-* Package hooks
+* Package lifecycle hooks
 
 
 
