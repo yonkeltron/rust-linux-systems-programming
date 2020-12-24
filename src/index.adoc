@@ -45,7 +45,9 @@ This talk will feature exactly zero slides and will be made entirely available, 
 
 == Systems Programming
 
-Broadly: Non-app programming like
+=== Broadly
+
+Non-app programming like:
 
 * OS development
 ** Kernels
@@ -55,6 +57,7 @@ Broadly: Non-app programming like
 ** Infrastructure components
 * Frameworks and libraries
 ** Game engines
+** Windowing toolkits
 
 
 
@@ -68,7 +71,7 @@ At face value you could do "Systems Programming" with:
 
 * https://elixir-lang.org/[Elixir/OTP]
 * https://www.typescriptlang.org/[TypeScript] on https://nodejs.org/en/[Node.js] or https://elixir-lang.org/[Deno]
-* Python or Ruby
+* https://www.python.org/[Python] or https://www.ruby-lang.org/en/[Ruby]
 
 NOTE: We typically think of systems programming languages as natively compiled ones.
 
@@ -590,7 +593,9 @@ NOTE: Try to ignore these. Work with me, here.
 
 * Make a Debian package with https://crates.io/crates/cargo-deb[`cargo-deb`].
 * Make an RPM with https://crates.io/crates/cargo-rpm[`cargo-rpm`].
-* Easy to bake into an https://appimage.org/[AppImage]!
+* Easy to bake into an https://appimage.org/[AppImage]
+* Supported well by https://snapcraft.io/docs/rust-applications[snapcraft]
+* Has been used successfully with https://belmoussaoui.com/article/8-how-to-flatpak-a-rust-application[flatpak]
 
 == Stuff we didn’t even cover
 
@@ -677,6 +682,8 @@ https://crates.io/[crates.io]
 * Official website https://hermione.dev
 * Track development at https://github.com/yonkeltron/hermione
 
+== Getting involved
 
+If you are a Rustacean, we need help with https://github.com/yonkeltron/cargo-appimage[`cargo-appimage`]!
 
 ==  Thanks. End.
