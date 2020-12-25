@@ -587,7 +587,7 @@ NOTE: Try to ignore these. Work with me, here.
 
 * Doesn’t have to feel low-level to be low-level.
 * Excellent ecosystem of crates.
-* Versatile interfaces to existing libraries.
+* Versatile interfaces to Linux functionality.
 
 == Packaging Rust binaries for Linux
 
@@ -595,7 +595,7 @@ NOTE: Try to ignore these. Work with me, here.
 * Make an RPM with https://crates.io/crates/cargo-rpm[`cargo-rpm`].
 * Easy to bake into an https://appimage.org/[AppImage]
 * Supported well by https://snapcraft.io/docs/rust-applications[snapcraft]
-* Has been used successfully with https://belmoussaoui.com/article/8-how-to-flatpak-a-rust-application[flatpak]
+* Has even been used successfully with https://belmoussaoui.com/article/8-how-to-flatpak-a-rust-application[flatpak]
 
 == Stuff we didn’t even cover
 
@@ -616,7 +616,8 @@ run modules in Rust
 * Filesystem development
 ** https://github.com/zargony/fuse-rs[fuse-rs] for writing your own
 https://github.com/libfuse/libfuse/[FUSE] systems
-
+* Containers
+** https://crates.io/crates/bollard[bollard] for controlling Docker
 
 
 == But Jonathan!
@@ -644,19 +645,23 @@ https://github.com/libfuse/libfuse/[FUSE] systems
 
 == Hermione features
 
+.Current
 * Full Rust CLI
 ** Portable across Linux, macOS, and Windows
 * Integrated package scaffolding and utilities
-* Repository support
 * Package lifecycle hooks
+
+.Coming soon
+* Repositories
+* Self-contained package archive support
+
+NOTE: Soon ripping out git support in favor of package repositories and archive files.
 
 
 
 ==  Check us out at `https://hermione.dev`
 
-
-==  Highly experimental!
-
+WARNING: Highly experimental!
 
 
 == I want to introduce co-maintainer Egli Hila
@@ -670,6 +675,11 @@ https://github.com/libfuse/libfuse/[FUSE] systems
 
 ==  Demo!
 
+== What you just saw
+
+* Command-line usage of Hermione
+* Hermione was used to install a package of config files
+* Config files were symlinked into place
 
 
 == Learning more about Rust
