@@ -23,7 +23,7 @@ This talk will feature exactly zero slides and will be made entirely available, 
 ** Early days means
 *** Prior to RedHat Linux 9!
 *** Started when Linux Live CDs were *very* new
-
+* Member of the PLUG mailing list for well over 10 years
 
 ==  Why are we here?
 
@@ -244,6 +244,13 @@ operator
 * Actors (https://riker.rs/[Riker], https://lib.rs/crates/spaad[spaad], https://github.com/sunli829/xactor[Xactor],
 others…)
 
+== Rust on the web
+
+* https://www.rust-lang.org/what/wasm[Rust and WebAssembly]
+* Rust web frameworks
+** https://yew.rs/[Yew]
+** https://seed-rs.org/[Seed]
+** https://chinedufn.github.io/percy/[Percy]
 
 ==  Sounds good.
 
@@ -251,11 +258,23 @@ others…)
 
 ==  Yes. It is pretty good.
 
+== It is not, however, perfect.
 
+* No map-literal syntaxes
+** There are macros, however
+* High guardrails sometimes complicate simple tasks
+* Slow compilation times elongate the "inner development loop"
+* Ecosystem still growing
+** Several parts are still immature
+
+== Back to icon:linux[] !
 
 ==  So where does Linux come in?
 
+=== Several places
 
+* Linux software being written in Rust
+* Linux-specific libraries for Rust
 
 == Lots of Linux software being written in Rust
 
@@ -282,12 +301,21 @@ Some of my favorites:
 * Show how to use Linux-specific functionality where possible.
 * Explain examples with context.
 
+.Non-goals
+* Exhaustive introduction to Rust
+* Cross-platform code
+* Exhaustive environmental overview
+
 
 == We will first build a Linux process viewer!
 
 
 
 ==  First thing’s first:
+
+=== You can install Rust with https://rustup.rs/[`rustup`]
+
+== Next:
 
 ===  Meet https://doc.rust-lang.org/cargo/[`cargo`]!
 
@@ -316,6 +344,8 @@ procfs = "0.9"
 
 
 == Add code to our project
+
+=== At a high-level:
 
 [source,rust,linenums]
 ----
