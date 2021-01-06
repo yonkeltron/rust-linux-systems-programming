@@ -210,7 +210,7 @@ Incredible linguistic attention to programmer productivity:
 NOTE: Traits are a bit different from Scala's implementation.
 This remains mostly due to their deliberate simplicity and an equally deliberate omission of https://en.wikipedia.org/wiki/Kind_(type_theory)[Higher-Kinded Types (HKTs)].
 
-== Less terrible error handling
+== Less terrible error handling icon:coffee[]
 
 === Compiler-checked errors with `Result<T, E>` to mark fallible computation
 
@@ -237,14 +237,14 @@ operator
 
 
 
-== Concurrency and parallelism
+== Concurrency and parallelism icon:bolt[]
 
 * Threads (included in the https://doc.rust-lang.org/std/thread/index.html[`std::thread`] module)
 * Futures (`async` and `await` with the https://doc.rust-lang.org/std/future/trait.Future.html[`Future`] trait)
 * Actors (https://riker.rs/[Riker], https://lib.rs/crates/spaad[spaad], https://github.com/sunli829/xactor[Xactor],
 others…)
 
-== Rust on the web
+== Rust on the web icon:wifi[]
 
 * https://www.rust-lang.org/what/wasm[Rust and WebAssembly]
 * Rust web frameworks
@@ -269,7 +269,7 @@ others…)
 
 == Back to icon:linux[] !
 
-==  So where does Linux come in?
+== icon:question[] So where does Linux come in icon:question[]
 
 === Several places
 
