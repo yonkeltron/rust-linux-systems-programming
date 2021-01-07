@@ -192,7 +192,7 @@ to Swift].
 
 
 
-== Evern more of Rust’s safety mechanisms
+== Even more of Rust’s safety mechanisms
 
 * Compile-time memory management with lifetimes
 ** Compiler does the hard work for you
