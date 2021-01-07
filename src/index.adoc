@@ -16,7 +16,7 @@ This talk will feature exactly zero slides and will be made entirely available, 
 
 == What do you need to know coming into this?
 
-- How to program.
+- How to program or read programs.
 - What it is, the Linux.
 
 === Do you need to know Rust?
@@ -34,9 +34,14 @@ This talk will feature exactly zero slides and will be made entirely available, 
 *** Started when Linux Live CDs were *very* new
 * Member of the PLUG mailing list for well over 15 years
 
-=== Tonight's Equipment
+=== Tonight's Tech Stack
 
+.Equipment
 * Linux running inside a Google Pixelbook Chromebook!
+
+.Software
+* https://asciidoctor.org/[AsciiDoctor]
+* https://www.ruby-lang.org/en/[Ruby 3.0] with https://github.com/ruby/rake[Rake]
 
 ==  Why are we here?
 
