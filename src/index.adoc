@@ -14,6 +14,15 @@ A talk presented to the http://www.phillylinux.org/[Philly Linux User Group (PLU
 The topic is "Linux Systems Programming with Rust" and focuses on Linux-specific programming with the https://www.rust-lang.org/[Rust Programming Language].
 This talk will feature exactly zero slides and will be made entirely available, complete with working example code, online.
 
+== What do you need to know coming into this?
+
+- How to program.
+- What it is, the Linux.
+
+=== Do you need to know Rust?
+
+* No.
+
 == Who is this Jonathan guy?
 
 * Principal Computer Scientist
@@ -23,7 +32,11 @@ This talk will feature exactly zero slides and will be made entirely available, 
 ** Early days means
 *** Prior to RedHat Linux 9!
 *** Started when Linux Live CDs were *very* new
-* Member of the PLUG mailing list for well over 10 years
+* Member of the PLUG mailing list for well over 15 years
+
+=== Tonight's Equipment
+
+* Linux running inside a Google Pixelbook Chromebook!
 
 ==  Why are we here?
 
@@ -77,8 +90,6 @@ NOTE: We typically think of systems programming languages as natively compiled o
 
 ==  Whatever.
 
-
-
 == Traditionally, systems programming has been the domain of C and C++.
 
 * Especially in the Unix world
@@ -93,8 +104,12 @@ NOTE: We typically think of systems programming languages as natively compiled o
 
 === Unchecked, manual memory management leads to bugs! 
 
+* https://www.zdnet.com/article/chrome-70-of-all-security-bugs-are-memory-safety-issues[Chrome: 70% of all security bugs are memory safety issues]
+* https://www.zdnet.com/article/microsoft-70-percent-of-all-security-bugs-are-memory-safety-issues[Microsoft: 70% of all security bugs are memory safety issues]
 
-== Enter the challengers
+=== icon:fire[] So now Microsoft and Google are in agreement? icon:fire[]
+
+== Enter the challengers!
 
 * https://golang.org/[Google's Go]
 * https://crystal-lang.org/[Crystal]
@@ -102,10 +117,9 @@ NOTE: We typically think of systems programming languages as natively compiled o
 * https://scala-native.readthedocs.io/[Scala Native]
 * https://nim-lang.org/[Nim]
 * https://ziglang.org/[Zig]
-* Rust
+* https://www.rust-lang.org/[Rust]
 
 ==  We’re obviously here for Rust, though.
-
 
 
 == Some active Rust OS dev projects
